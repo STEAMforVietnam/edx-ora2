@@ -1061,7 +1061,7 @@ class SubmissionRenderTest(SubmissionXBlockHandlerTestCase):
 
         workflow = xblock.get_workflow_info()
         student_submission = sub_api.get_submission(workflow['submission_uuid'])
-        
+
         comments = "Cancelled by staff"
         staff_id = "Andy"
         mock_staff = Mock(name=staff_id)
@@ -1305,11 +1305,10 @@ class SubmissionRenderTest(SubmissionXBlockHandlerTestCase):
         individual_submission = sub_api.get_submission(team_workflow.submission_uuid)
 
         # Assert that the xblock will render Red Five's existing submission rather that
-        # no submission (because TestTeam does not yet have a submission) 
+        # no submission (because TestTeam does not yet have a submission)
         path, context = xblock.submission_path_and_context()
         self.assertEqual(path, 'openassessmentblock/response/oa_response_submitted.html')
         self.assertEqual(context['student_submission'], create_submission_dict(individual_submission, xblock.prompts))
-
 
     def _create_team_submission_and_workflow(
         self, course_id, item_id, team_id, submitter_id, team_member_student_ids, answer
