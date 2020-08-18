@@ -1378,7 +1378,7 @@ class TestCourseStaff(XBlockHandlerTestCase):
             xblock.get_anonymous_user_ids_for_team = Mock(return_value=anonymous_user_ids_for_team)
 
             # For both functions, map values in MOCK_TEAM_MEMBER_STUDENT_IDS to values in MOCK_TEAM_MEMBER_USERNAMES,
-            # and if the parameters are not in those, just return the value itself. These are only defined in the 
+            # and if the parameters are not in those, just return the value itself. These are only defined in the
             # team case because otherwise MOCK_TEAM_MEMBER_(STUDENT_IDS|USERNAMES) have no meaning.
             def mock_get_username(student_id):
                 if student_id in MOCK_TEAM_MEMBER_STUDENT_IDS:
