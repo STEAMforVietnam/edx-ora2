@@ -3,7 +3,6 @@ import logging
 
 from django.utils.functional import cached_property
 from django.core.exceptions import ObjectDoesNotExist
-from openassessment.xblock.data_conversion import list_to_conversational_format
 from xblock.exceptions import NoSuchServiceError
 from submissions.team_api import (
     get_team_submission,
@@ -11,6 +10,7 @@ from submissions.team_api import (
     get_team_submission_student_ids
 )
 
+from openassessment.xblock.data_conversion import list_to_conversational_format
 
 logger = logging.getLogger(__name__)  # pylint: disable=invalid-name
 

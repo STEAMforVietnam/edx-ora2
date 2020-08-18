@@ -1110,7 +1110,7 @@ class TestCourseStaff(XBlockHandlerTestCase):
         other_team_student_ids = [MOCK_TEAM_MEMBER_STUDENT_IDS[0], 'someother-teammate-studentid', 'a-third-person-id']
         other_team_id = 'this-is-some-other-team-s-team-id'
         other_team_name = 'some-other-team-name'
-        existing_team_submission = self._create_team_submission(
+        self._create_team_submission(
             TEAMMATE_ITEM['course_id'],
             xblock.location,
             other_team_id,
@@ -1120,7 +1120,7 @@ class TestCourseStaff(XBlockHandlerTestCase):
         )
 
         # Create a team submission for the test team, excluding UserA
-        test_team_submission = self._create_team_submission(
+        self._create_team_submission(
             TEAMMATE_ITEM['course_id'],
             xblock.location,
             MOCK_TEAM_ID,
@@ -1334,7 +1334,7 @@ class TestCourseStaff(XBlockHandlerTestCase):
         """
         A shortcut method to setup ORA xblock and add a user submission or a team submission to the block.
         """
-        self._setup_xblock(xblock, anonymous_user_id=anonymous_user_id, team=team, has_team=has_team, **kwargs)
+        self._setup_xblock(xblock, anonymous_user_id=anonymous_user_id, team=team, has_team=has_team)
         if team:
             arbitrary_test_user = UserFactory.create()
             return self._create_team_submission(
@@ -1355,7 +1355,7 @@ class TestCourseStaff(XBlockHandlerTestCase):
                 'files_names': kwargs.get('files_names', [])
             }, ['staff'])
 
-    def _setup_xblock(self, xblock, anonymous_user_id='Bob', team=False, has_team=True, **kwargs):
+    def _setup_xblock(self, xblock, anonymous_user_id='Bob', team=False, has_team=True):
         """
         Setup an xblock for teams / individual testing without creating a submission
         """
@@ -1385,7 +1385,7 @@ class TestCourseStaff(XBlockHandlerTestCase):
                     return MOCK_TEAM_MEMBER_USERNAMES[MOCK_TEAM_MEMBER_STUDENT_IDS.index(student_id)]
                 return student_id
 
-            def mock_get_anonymous_id(username, course_id):
+            def mock_get_anonymous_id(username, _):
                 if username in MOCK_TEAM_MEMBER_USERNAMES:
                     return MOCK_TEAM_MEMBER_STUDENT_IDS[MOCK_TEAM_MEMBER_USERNAMES.index(username)]
                 return username
