@@ -973,7 +973,12 @@ class TestCourseStaff(XBlockHandlerTestCase):
         self._setup_xblock_and_create_submission(xblock, team=True)
 
         # When we clear team state
-        xblock.clear_student_state('Bob', 'test_course', xblock.scope_ids.usage_id, STUDENT_ITEM['student_id'])
+        xblock.clear_student_state(
+            MOCK_TEAM_MEMBER_STUDENT_IDS[0],
+            'test_course',
+            xblock.scope_ids.usage_id,
+            STUDENT_ITEM['student_id']
+        )
 
         # Then we delete files for the team
         delete_files_patch.assert_called_with(STUDENT_ITEM['course_id'], xblock.scope_ids.usage_id, MOCK_TEAM_ID)
