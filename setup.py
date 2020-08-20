@@ -35,7 +35,7 @@ def load_requirements(*requirements_paths):
 
 
 setup(
-    name='ora2',
+    name='ora2_steam',
     version='2.8.1',
     author='edX',
     author_email='oscm@edx.org',
@@ -61,7 +61,7 @@ setup(
     tests_require=load_requirements('requirements/test.in'),
     entry_points={
         'xblock.v1': [
-            'openassessment = openassessment.xblock.openassessmentblock:OpenAssessmentBlock',
+            'ora_steam = openassessment.xblock.openassessmentblock:OpenAssessmentBlock',
         ]
     },
 )
